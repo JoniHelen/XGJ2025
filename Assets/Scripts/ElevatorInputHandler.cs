@@ -32,6 +32,5 @@ public class ElevatorInputHandler : MonoBehaviour {
     public void OnShoot(InputAction.CallbackContext ctx) {
         if (!ctx.performed) return;
         plunger.Shoot(_input);
-        Debug.Log(_input);
     }
 }
