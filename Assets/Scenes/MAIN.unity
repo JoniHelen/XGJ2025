@@ -2084,8 +2084,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   score: 0
+  deathSpeed: 5
+  rope: {fileID: 1329266337}
   coinClip: {fileID: 8300000, guid: 521b90a5b47beb84181866e62aac6de4, type: 3}
   audioSource: {fileID: 1105679923}
+  holdingJoint: {fileID: 855575875}
+  rigidBody2D: {fileID: 1105679920}
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 295323755}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: OnPlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &1105679923
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8404,7 +8423,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6037736, g: 0.2770222, b: 0, a: 1}
+      key0: {r: 0.4245283, g: 0.19680335, b: 0.0020024967, a: 1}
       key1: {r: 0.6037736, g: 0.2770222, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

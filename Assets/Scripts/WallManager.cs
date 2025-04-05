@@ -26,6 +26,10 @@ public class WallManager : MonoBehaviour {
         }
     }
 
+    public void OnPlayerDeath() {
+        enabled = false;
+    }
+
     private void Generate(Transform wall) {
         _wallQueue.Enqueue(wall);
 

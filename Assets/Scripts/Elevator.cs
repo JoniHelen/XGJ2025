@@ -1,12 +1,23 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class Elevator : MonoBehaviour {
     
     [SerializeField] private float health = 100f;
     [SerializeField] private int score = 0;
     
+    [SerializeField] private float deathSpeed = 1.5f;
+    [SerializeField] private Rope rope;
+    
     [SerializeField] private AudioClip coinClip;
     [SerializeField] private AudioSource audioSource;
+
+    [SerializeField] private DistanceJoint2D holdingJoint;
+    
+    [SerializeField] private Rigidbody2D rigidBody2D;
+    
+    [SerializeField] private UnityEvent onDeath;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,13 +26,23 @@ public class Elevator : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame) {
+            Die();
+        }
     }
 
     public void AddScore(int scoreToAdd) {
         score += scoreToAdd;
         audioSource.PlayOneShot(coinClip);
+    }
+
+    private void Die() {
+        rope.Cut();
+        holdingJoint.connectedBody = null;
+        rigidBody2D.linearVelocity = 
+            Quaternion.AngleAxis(Random.Range(-45f, 45f), Vector3.forward) * Vector2.up * deathSpeed;
+        rigidBody2D.angularVelocity = Random.Range(-45f, 45f);
+        onDeath.Invoke();
     }
 }
