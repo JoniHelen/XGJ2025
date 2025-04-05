@@ -57,8 +57,8 @@ public class WallManager : MonoBehaviour {
                     continue;
                 }
                 
-                Instantiate(antiquities[0], hit.point,
-                    Quaternion.AngleAxis(Vector2.Angle(hit.normal, Vector2.right), Vector3.forward),
+                Instantiate(antiquities[Random.Range(0, antiquities.Count)], hit.point,
+                    Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward),
                     wall.transform);
             }
             
@@ -76,8 +76,8 @@ public class WallManager : MonoBehaviour {
                     continue;
                 }
                 
-                Instantiate(antiquities[0], hit.point,
-                    Quaternion.AngleAxis(Vector2.Angle(hit.normal, Vector2.right), Vector3.forward),
+                Instantiate(antiquities[Random.Range(0, antiquities.Count)], hit.point,
+                    Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward),
                     wall.transform);
             }
             

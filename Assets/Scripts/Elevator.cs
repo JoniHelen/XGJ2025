@@ -18,6 +18,8 @@ public class Elevator : MonoBehaviour {
     [SerializeField] private Rigidbody2D rigidBody2D;
     
     [SerializeField] private UnityEvent onDeath;
+
+    public static Vector2 Position;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,9 +29,7 @@ public class Elevator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) {
-            Die();
-        }
+        Position = transform.position;
     }
 
     public void AddScore(int scoreToAdd) {
@@ -44,5 +44,12 @@ public class Elevator : MonoBehaviour {
             Quaternion.AngleAxis(Random.Range(-45f, 45f), Vector3.forward) * Vector2.up * deathSpeed;
         rigidBody2D.angularVelocity = Random.Range(-45f, 45f);
         onDeath.Invoke();
+    }
+
+    public void TakeDamage(float damage) {
+        health -= damage;
+        if (health <= 0f) {
+            Die();
+        }
     }
 }
