@@ -8,6 +8,11 @@ public class Gun : MonoBehaviour {
     [SerializeField] private Color normalColor;
     [SerializeField] private float damage;
     [SerializeField] private new Light2D light;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource switchSource;
+    [SerializeField] private AudioClip switchClip;
+    [SerializeField] private AudioClip onClip;
+    [SerializeField] private AudioClip offClip;
     
     private bool _damaging = false;
 
@@ -15,7 +20,10 @@ public class Gun : MonoBehaviour {
         get => _damaging;
         set {
             _damaging = value;
+            switchSource.PlayOneShot(switchClip);
             light.color = _damaging ? damageColor : normalColor;
+            audioSource.Stop();
+            audioSource.PlayOneShot(_damaging ? onClip : offClip);
         }
     }
     
