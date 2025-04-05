@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 public class ElevatorInputHandler : MonoBehaviour {
-    [SerializeField] private Transform gun;
+    [SerializeField] private Gun gun;
     [SerializeField] private Plunger plunger;
+    [SerializeField] private PlayerInput playerInput;
     
     private Vector2 _input;
     private Camera _camera;
@@ -14,7 +15,7 @@ public class ElevatorInputHandler : MonoBehaviour {
     }
 
     void Update() {
-        gun.up = _input;
+        gun.transform.up = _processedInput;
     }
 
     public void OnLook(InputAction.CallbackContext ctx) {
@@ -25,12 +26,25 @@ public class ElevatorInputHandler : MonoBehaviour {
         if (raw.sqrMagnitude < 0.3f) return; // Stick dead zone
         
         _input = ctx.control.device.deviceId == Mouse.current.deviceId ? 
-            ((Vector2)_camera.ScreenToWorldPoint(raw) - (Vector2)transform.position).normalized :
+            _camera.ScreenToWorldPoint(raw) :
             raw.normalized;
     }
 
     public void OnShoot(InputAction.CallbackContext ctx) {
         if (!ctx.performed) return;
-        plunger.Shoot(_input);
+        plunger.Shoot(_processedInput);
     }
+
+    public void OnAttack(InputAction.CallbackContext ctx) {
+        if (ctx.started) {
+            gun.Damaging = true;
+        }
+        else if (ctx.canceled) {
+            gun.Damaging = false;
+        }
+    }
+
+    private Vector2 _processedInput => playerInput.currentControlScheme == "Keyboard&Mouse"
+        ? (_input - (Vector2)transform.position).normalized
+        : _input;
 }
