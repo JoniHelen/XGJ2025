@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 1ead5860ce4199641a8cf6bfa3beb6ef
+guid: 2560cfe116fae5545bcefb3228ff336a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3696322052742305611
-    second: Hp_bar_fill_0
+      213: -7956440512864736020
+    second: Frame 12 (7)_0
+  - first:
+      213: 8072621856265494495
+    second: Frame 12 (7)_1
+  - first:
+      213: 5867745741258259491
+    second: Frame 12 (7)_2
+  - first:
+      213: -8270362660598829216
+    second: Frame 12 (7)_3
+  - first:
+      213: -7844633265027445700
+    second: Frame 12 (7)_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hp_bar_fill_0
+      name: Frame 12 (7)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 145
-        height: 26
+        x: 4
+        y: 169
+        width: 42
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5b82ade4da604bcc0800000000000000
-      internalID: -3696322052742305611
+      spriteID: cecab22328b059190800000000000000
+      internalID: -7956440512864736020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 12 (7)_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 194
+        width: 33
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdf52c4cec6b70070800000000000000
+      internalID: 8072621856265494495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 12 (7)_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 41
+        width: 310
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32c720cb9ab6e6150800000000000000
+      internalID: 5867745741258259491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 12 (7)_3
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 286
+        width: 40
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f2a5b7af4c93d80800000000000000
+      internalID: -8270362660598829216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 12 (7)_4
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 277
+        width: 52
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c83dcab93422390800000000000000
+      internalID: -7844633265027445700
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Hp_bar_fill_0: -3696322052742305611
+      Frame 12 (7)_0: -7956440512864736020
+      Frame 12 (7)_1: 8072621856265494495
+      Frame 12 (7)_2: 5867745741258259491
+      Frame 12 (7)_3: -8270362660598829216
+      Frame 12 (7)_4: -7844633265027445700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
