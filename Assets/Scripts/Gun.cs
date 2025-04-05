@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private Color damageColor;
     [SerializeField] private Color normalColor;
     [SerializeField] private float damage;
+    [SerializeField] private float lightDrain;
     [SerializeField] private new Light2D light;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource switchSource;
@@ -19,11 +20,17 @@ public class Gun : MonoBehaviour {
     
     private bool _damaging = false;
 
+    private float _lightResource = 100.0f;
+
     private readonly List<Enemy> _enemies = new();
 
-    public bool Damaging {
+    public bool Damaging;
+
+    private bool ActuallyDamaging {
         get => _damaging;
         set {
+            if (_damaging == value) return;
+            
             _damaging = value;
             switchSource.PlayOneShot(switchClip);
             light.color = _damaging ? damageColor : normalColor;
@@ -38,8 +45,16 @@ public class Gun : MonoBehaviour {
         
     }
 
+    private void Update() {
+        _lightResource = Damaging ? 
+            Mathf.Max(_lightResource - lightDrain * Time.deltaTime, 0.0f) : 
+            Mathf.Min(_lightResource + lightDrain * 0.5f * Time.deltaTime, 100.0f);
+
+        ActuallyDamaging = _lightResource > 0.0f && Damaging;
+    }
+
     void FixedUpdate() {
-        if (_damaging) {
+        if (_damaging && _lightResource > 0) {
             var results = new List<Collider2D>();
             var count = Physics2D.OverlapCircle(
                 transform.position, light.pointLightOuterRadius, contactFilter, results

@@ -11,6 +11,7 @@ public class Elevator : MonoBehaviour {
     [SerializeField] private Rope rope;
     
     [SerializeField] private AudioClip coinClip;
+    [SerializeField] private AudioClip splinterClip;
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private DistanceJoint2D holdingJoint;
@@ -21,13 +22,6 @@ public class Elevator : MonoBehaviour {
 
     public static Vector2 Position;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update() {
         Position = transform.position;
     }
@@ -48,6 +42,7 @@ public class Elevator : MonoBehaviour {
 
     public void TakeDamage(float damage) {
         health -= damage;
+        audioSource.PlayOneShot(splinterClip);
         if (health <= 0f) {
             Die();
         }
