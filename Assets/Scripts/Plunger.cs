@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -38,7 +39,14 @@ public class Plunger : MonoBehaviour {
             Recall();
         }
     }
-    
+
+    private void FixedUpdate() {
+        if (_rigidbody.simulated) {
+            // simulate the frame of reference moving away
+            _rigidbody.linearVelocity += Vector2.up * Time.fixedDeltaTime;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.TryGetComponent(out Antiquity antiquity)) {
             antiquity.transform.parent = transform;
