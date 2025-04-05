@@ -8,6 +8,7 @@ public class Plunger : MonoBehaviour {
     [SerializeField] private LineRenderer line;
     [SerializeField] private Transform gun;
     [SerializeField] private Elevator elevator;
+    [SerializeField] private ParticleSystem plungerEffect;
 
     [SerializeField] private AudioClip shotClip;
     [SerializeField] private AudioClip hitClip;
@@ -87,6 +88,7 @@ public class Plunger : MonoBehaviour {
 
         if (!_antiquity) yield break;
         
+        plungerEffect.Play();
         elevator.AddScore(_antiquity.Value);
         Destroy(_antiquity.gameObject);
         _antiquity = null;
