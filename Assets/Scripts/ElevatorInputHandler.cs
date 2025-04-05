@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class ElevatorInputHandler : MonoBehaviour {
@@ -16,6 +17,10 @@ public class ElevatorInputHandler : MonoBehaviour {
 
     void Update() {
         gun.transform.up = _processedInput;
+    }
+
+    public void OnPlayerDeath() {
+        playerInput.SwitchCurrentActionMap("Dead");
     }
 
     public void OnLook(InputAction.CallbackContext ctx) {
@@ -42,6 +47,11 @@ public class ElevatorInputHandler : MonoBehaviour {
         else if (ctx.canceled) {
             gun.Damaging = false;
         }
+    }
+
+    public void OnRestart(InputAction.CallbackContext ctx) {
+        if (!ctx.performed) return;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private Vector2 _processedInput => playerInput.currentControlScheme == "Keyboard&Mouse"

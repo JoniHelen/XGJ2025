@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private ParticleSystem hurtParticles;
     [SerializeField] private GameObject deathParticles;
     
-    [SerializeField] private Rigidbody2D rb;
+    public Rigidbody2D rb;
     
     private bool _inDamageZone = false;
     public bool InDamageZone {

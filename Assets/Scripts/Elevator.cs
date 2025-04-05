@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -19,14 +20,17 @@ public class Elevator : MonoBehaviour {
     
     [SerializeField] private UnityEvent onDeath;
     
-    [SerializeField] private UnityEvent<int> onScore;
-    [SerializeField] private UnityEvent<int> onDepth;
+    public UnityEvent<int> onScore;
+    public UnityEvent<int> onDepth;
 
     private float _depth = 0;
+    
+    private bool _isDead = false;
     
     public static Vector2 Position;
     
     void Update() {
+        if (_isDead) return;
         Position = transform.position;
         _depth += Time.deltaTime;
         onDepth.Invoke(Mathf.FloorToInt(_depth));
@@ -45,6 +49,7 @@ public class Elevator : MonoBehaviour {
             Quaternion.AngleAxis(Random.Range(-45f, 45f), Vector3.forward) * Vector2.up * deathSpeed;
         rigidBody2D.angularVelocity = Random.Range(-45f, 45f);
         onDeath.Invoke();
+        _isDead = true;
     }
 
     public void TakeDamage(float damage) {

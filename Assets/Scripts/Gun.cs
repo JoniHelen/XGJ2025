@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] private AudioClip offClip;
     [SerializeField] private ContactFilter2D contactFilter;
 
-    [SerializeField] private UnityEvent<float> onLight;
+    public UnityEvent<float> onLight;
     
     private bool _damaging = false;
 
@@ -77,6 +77,7 @@ public class Gun : MonoBehaviour {
                     }
                     
                     enemy.InDamageZone = true;
+                    enemy.rb.linearVelocity = Vector2.zero;
                     _enemies.Add(enemy);
                 }
             }
