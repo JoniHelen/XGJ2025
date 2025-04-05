@@ -7,11 +7,18 @@ public class Plunger : MonoBehaviour {
     [SerializeField] private float recallRadius;
     [SerializeField] private LineRenderer line;
     [SerializeField] private Transform gun;
+    [SerializeField] private Elevator elevator;
+
+    [SerializeField] private AudioClip shotClip;
+    [SerializeField] private AudioClip hitClip;
+    
+    [SerializeField] private AudioSource audioSource;
     
     private Rigidbody2D _rigidbody;
     private readonly Vector3[] _points = new Vector3[2];
     private bool _loaded = true;
     private bool _recalling = false;
+    private Antiquity _antiquity;
 
     private void Awake() {
         TryGetComponent(out _rigidbody);
@@ -34,13 +41,18 @@ public class Plunger : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.TryGetComponent(out Antiquity antiquity)) {
             antiquity.transform.parent = transform;
+            _antiquity = antiquity;
         }
+        
+        audioSource.PlayOneShot(hitClip);
         
         Recall();
     }
 
     public void Shoot(Vector2 direction) {
         if (!_loaded) return;
+        
+        audioSource.PlayOneShot(shotClip);
         
         transform.parent = null;
         _rigidbody.simulated = true;
@@ -72,5 +84,11 @@ public class Plunger : MonoBehaviour {
         transform.localRotation = Quaternion.identity;
         _loaded = true;
         _recalling = false;
+
+        if (!_antiquity) yield break;
+        
+        elevator.AddScore(_antiquity.Value);
+        Destroy(_antiquity.gameObject);
+        _antiquity = null;
     }
 }
