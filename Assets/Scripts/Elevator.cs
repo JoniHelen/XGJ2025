@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Elevator : MonoBehaviour {
-    
     [SerializeField] private float health = 100f;
     [SerializeField] private int score = 0;
     
@@ -19,16 +18,24 @@ public class Elevator : MonoBehaviour {
     [SerializeField] private Rigidbody2D rigidBody2D;
     
     [SerializeField] private UnityEvent onDeath;
+    
+    [SerializeField] private UnityEvent<int> onScore;
+    [SerializeField] private UnityEvent<int> onDepth;
 
+    private float _depth = 0;
+    
     public static Vector2 Position;
     
     void Update() {
         Position = transform.position;
+        _depth += Time.deltaTime;
+        onDepth.Invoke(Mathf.FloorToInt(_depth));
     }
 
     public void AddScore(int scoreToAdd) {
         score += scoreToAdd;
         audioSource.PlayOneShot(coinClip);
+        onScore.Invoke(score);
     }
 
     private void Die() {

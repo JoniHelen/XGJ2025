@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Linq;
+using UnityEngine.Events;
 
 public class Gun : MonoBehaviour {
     [SerializeField] private Color damageColor;
@@ -17,6 +18,8 @@ public class Gun : MonoBehaviour {
     [SerializeField] private AudioClip onClip;
     [SerializeField] private AudioClip offClip;
     [SerializeField] private ContactFilter2D contactFilter;
+
+    [SerializeField] private UnityEvent<float> onLight;
     
     private bool _damaging = false;
 
@@ -50,6 +53,8 @@ public class Gun : MonoBehaviour {
             Mathf.Max(_lightResource - lightDrain * Time.deltaTime, 0.0f) : 
             Mathf.Min(_lightResource + lightDrain * 0.5f * Time.deltaTime, 100.0f);
 
+        onLight.Invoke(_lightResource);
+        
         ActuallyDamaging = _lightResource > 0.0f && Damaging;
     }
 
