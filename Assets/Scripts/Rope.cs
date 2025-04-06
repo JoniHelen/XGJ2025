@@ -6,6 +6,8 @@ using UnityEngine;
 public class Rope : MonoBehaviour {
     [SerializeField] private LineRenderer _line;
     [SerializeField] private Transform[] _points;
+    [SerializeField] private GameObject startButton;
+    [SerializeField] private ElevatorInputHandler elevatorInputHandler;
     [SerializeField] private Rigidbody2D rb;
 
     public void Cut() {
@@ -33,6 +35,8 @@ public class Rope : MonoBehaviour {
         }
         
         rb.MovePosition(new Vector3(transform.position.x, endHeight, transform.position.z));
+        startButton.SetActive(true);
+        elevatorInputHandler.EnableStart();
     }
 
     void Update() {

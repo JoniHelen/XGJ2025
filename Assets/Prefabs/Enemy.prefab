@@ -63,7 +63,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 45892ece298f441428a55a0497dea43d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,6 +116,8 @@ MonoBehaviour:
   face: {fileID: 255352606239503347}
   audioSource: {fileID: 0}
   hurtSource: {fileID: 5225524118233715863}
+  regularMaterial: {fileID: 2100000, guid: 45892ece298f441428a55a0497dea43d, type: 2}
+  damagedMaterial: {fileID: 2100000, guid: 6594ae6a9a56b0d4f923d9f2a9fe563f, type: 2}
   hurtParticles: {fileID: 764410097935166727}
   deathParticles: {fileID: 4977947112583076263, guid: a26ffe44b20e2f24da7b68a69c996da3, type: 3}
   rb: {fileID: 8378272222526786600}

@@ -9,9 +9,13 @@ public class ElevatorInputHandler : MonoBehaviour {
     [SerializeField] private Plunger plunger;
     [SerializeField] private PlayerInput playerInput;
 
+    [SerializeField] private float turnSpeed;
+
     [SerializeField] private GameObject guide;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject hud;
+
+    [SerializeField] private AudioSource uiAudio;
     
     [SerializeField] private UnityEvent onStart;
     
@@ -20,10 +24,14 @@ public class ElevatorInputHandler : MonoBehaviour {
     
     void Awake() {
         _camera = Camera.main;
+        playerInput.currentActionMap.Disable();
     }
 
     void Update() {
-        gun.transform.up = _processedInput;
+        gun.transform.up = 
+            Vector3.RotateTowards(gun.transform.up, _processedInput,
+                turnSpeed * Time.deltaTime, 0
+            );
 
         if (Keyboard.current != null) {
             if (Keyboard.current.escapeKey.wasPressedThisFrame) {
@@ -36,6 +44,10 @@ public class ElevatorInputHandler : MonoBehaviour {
                 Application.Quit();
             }
         }
+    }
+
+    public void EnableStart() {
+        playerInput.currentActionMap.Enable();
     }
 
     public void OnPlayerDeath() {
@@ -54,6 +66,7 @@ public class ElevatorInputHandler : MonoBehaviour {
         onStart.Invoke();
         start.SetActive(false);
         hud.SetActive(true);
+        uiAudio.Play();
         playerInput.SwitchCurrentActionMap("Player");
     }
 
@@ -80,6 +93,8 @@ public class ElevatorInputHandler : MonoBehaviour {
             guide.SetActive(true);
             start.SetActive(false);
         }
+        
+        uiAudio.Play();
     }
 
     public void OnShoot(InputAction.CallbackContext ctx) {

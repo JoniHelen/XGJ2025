@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource hurtSource;
     
+    [SerializeField] private Material regularMaterial;
+    [SerializeField] private Material damagedMaterial;
+    
     [SerializeField] private ParticleSystem hurtParticles;
     [SerializeField] private GameObject deathParticles;
     
@@ -28,11 +31,13 @@ public class Enemy : MonoBehaviour {
                 hurtSource.Play();
                 hurtParticles.Play();
                 face.sprite = damagedFace;
+                face.material = damagedMaterial;
             }
             else {
                 hurtSource.Stop();
                 hurtParticles.Stop();
                 face.sprite = normalFace;
+                face.material = regularMaterial;
             }
         }
     }
