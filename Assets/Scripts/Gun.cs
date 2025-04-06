@@ -87,12 +87,13 @@ public class Gun : MonoBehaviour {
             foreach (var enemy in _enemies) {
                 if (Vector2.Angle(transform.up,
                         enemy.transform.position - transform.position) > light.pointLightOuterAngle / 2.0f) {
-                    enemy.InDamageZone = false;
+                    
+                    if (enemy) enemy.InDamageZone = false;
                     continue;
                 }
 
                 if (!detectedEnemies.Contains(enemy)) {
-                    enemy.InDamageZone = false;
+                    if (enemy) enemy.InDamageZone = false;
                 }
             }
 
@@ -100,7 +101,7 @@ public class Gun : MonoBehaviour {
         }
         else if (_enemies.Count > 0) {
             foreach (var enemy in _enemies) {
-                enemy.InDamageZone = false;
+                if (enemy) enemy.InDamageZone = false;
             }
             
             _enemies.Clear();

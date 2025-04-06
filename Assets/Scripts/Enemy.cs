@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private float damageFromLight = 33.33f;
     [SerializeField] private float speed;
     [SerializeField] private float turnRate;
+
+    [SerializeField] private Sprite normalFace;
+    [SerializeField] private Sprite damagedFace;
+    [SerializeField] private SpriteRenderer face;
     
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource hurtSource;
@@ -23,10 +27,12 @@ public class Enemy : MonoBehaviour {
             if (_inDamageZone) {
                 hurtSource.Play();
                 hurtParticles.Play();
+                face.sprite = damagedFace;
             }
             else {
                 hurtSource.Stop();
                 hurtParticles.Stop();
+                face.sprite = normalFace;
             }
         }
     }
@@ -51,7 +57,7 @@ public class Enemy : MonoBehaviour {
             TakeDamage(damageFromLight * Time.deltaTime);
         }
 
-        transform.right = (Elevator.Position - (Vector2)transform.position).normalized;
+        //transform.right = (Elevator.Position - (Vector2)transform.position).normalized;
     }
 
     private void Die() {

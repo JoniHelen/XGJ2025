@@ -15,6 +15,7 @@ public class Elevator : MonoBehaviour {
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private RectTransform hpBar;
+    [SerializeField] private GameObject hpCanvas;
 
     [SerializeField] private DistanceJoint2D holdingJoint;
     
@@ -41,6 +42,7 @@ public class Elevator : MonoBehaviour {
 
     public void OnStart() {
         _running = true;
+        hpCanvas.SetActive(true);
     }
 
     public void AddScore(int scoreToAdd) {

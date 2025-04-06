@@ -9,6 +9,10 @@ public class ElevatorInputHandler : MonoBehaviour {
     [SerializeField] private Plunger plunger;
     [SerializeField] private PlayerInput playerInput;
 
+    [SerializeField] private GameObject guide;
+    [SerializeField] private GameObject start;
+    [SerializeField] private GameObject hud;
+    
     [SerializeField] private UnityEvent onStart;
     
     private Vector2 _input;
@@ -38,9 +42,18 @@ public class ElevatorInputHandler : MonoBehaviour {
         playerInput.SwitchCurrentActionMap("Dead");
     }
 
+    public void ButtonStart() {
+        onStart.Invoke();
+        start.SetActive(false);
+        hud.SetActive(true);
+        playerInput.SwitchCurrentActionMap("Player");
+    }
+
     public void OnStart(InputAction.CallbackContext context) {
         if (!context.performed) return;
         onStart.Invoke();
+        start.SetActive(false);
+        hud.SetActive(true);
         playerInput.SwitchCurrentActionMap("Player");
     }
 
@@ -56,9 +69,17 @@ public class ElevatorInputHandler : MonoBehaviour {
             raw.normalized;
     }
 
-    public void OnInfo(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
+    public void OnInfo(InputAction.CallbackContext context) {
+        if(!context.performed) return;
+        
+        if (guide.activeSelf) {
+            guide.SetActive(false);
+            start.SetActive(true);
+        }
+        else if (start.activeSelf) {
+            guide.SetActive(true);
+            start.SetActive(false);
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext ctx) {
