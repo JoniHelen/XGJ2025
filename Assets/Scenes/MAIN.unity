@@ -1955,7 +1955,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1105679919}
-        m_TargetAssemblyTypeName: MouseFollower, Assembly-CSharp
+        m_TargetAssemblyTypeName: ElevatorInputHandler, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
         m_Arguments:
@@ -2056,9 +2056,57 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fec3c09f-4e8b-4a88-91f8-59da3abc2501
     m_ActionName: 'Dead/Restart[/Keyboard/r,/DualSenseGamepadHID/start]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105679919}
+        m_TargetAssemblyTypeName: ElevatorInputHandler, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1130ce80-31f3-46dd-80af-5f8b28bbdd75
+    m_ActionName: 'Start/Start[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105679919}
+        m_TargetAssemblyTypeName: ElevatorInputHandler, Assembly-CSharp
+        m_MethodName: OnInfo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3b2bcc66-f07c-4aab-b237-90e7bae242b9
+    m_ActionName: 'Start/Info[/Keyboard/i]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1105679919}
+        m_TargetAssemblyTypeName: ElevatorInputHandler, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 501c47d1-341d-4163-b87c-f196f4459702
+    m_ActionName: 'Start/Look[/Mouse/position,/Pen/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Start
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1105679919
@@ -2076,6 +2124,45 @@ MonoBehaviour:
   gun: {fileID: 854600565}
   plunger: {fileID: 1915508289}
   playerInput: {fileID: 1105679918}
+  onStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1737199720}
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 295323755}
+        m_TargetAssemblyTypeName: WallManager, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1105679922}
+        m_TargetAssemblyTypeName: Elevator, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &1105679920
 Rigidbody2D:
   serializedVersion: 5
@@ -14145,11 +14232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1840507878109760565, guid: c75e52996e2e5ac47a458af563f53120, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -63.999817
+      value: -63.999756
       objectReference: {fileID: 0}
     - target: {fileID: 2831903361398524810, guid: c75e52996e2e5ac47a458af563f53120, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -63.999817
+      value: -63.999756
       objectReference: {fileID: 0}
     - target: {fileID: 3450604787006691457, guid: c75e52996e2e5ac47a458af563f53120, type: 3}
       propertyPath: m_SizeDelta.x

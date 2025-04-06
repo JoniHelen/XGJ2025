@@ -28,14 +28,19 @@ public class Elevator : MonoBehaviour {
     private float _depth = 0;
     
     private bool _isDead = false;
+    private bool _running = false;
     
     public static Vector2 Position;
     
     void Update() {
-        if (_isDead) return;
+        if (_isDead || !_running) return;
         Position = transform.position;
         _depth += Time.deltaTime;
         onDepth.Invoke(Mathf.FloorToInt(_depth));
+    }
+
+    public void OnStart() {
+        _running = true;
     }
 
     public void AddScore(int scoreToAdd) {

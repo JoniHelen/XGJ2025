@@ -9,6 +9,8 @@ public class WallManager : MonoBehaviour {
     [SerializeField] private List<Transform> walls;
     [SerializeField] private List<Antiquity> antiquities;
     [SerializeField] private ContactFilter2D contactFilter;
+
+    private bool _running = false;
     
     private Queue<Transform> _wallQueue;
     
@@ -17,6 +19,8 @@ public class WallManager : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        if (!_running) return;
+        
         foreach (var tr in walls) {
             tr.position = (Vector2)tr.position + Vector2.up * (scrollSpeed * Time.deltaTime);
         }
@@ -28,6 +32,10 @@ public class WallManager : MonoBehaviour {
 
     public void OnPlayerDeath() {
         enabled = false;
+    }
+
+    public void OnStart() {
+        _running = true;
     }
 
     private void Generate(Transform wall) {

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour {
     
     private WaitForSeconds _spawnDelay;
     
-    void Start() {
+    public void OnStart() {
         _spawnDelay = new WaitForSeconds(spawnInterval);
         StartCoroutine(Spawner());
     }

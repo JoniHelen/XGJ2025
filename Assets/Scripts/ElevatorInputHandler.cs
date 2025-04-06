@@ -1,26 +1,47 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class ElevatorInputHandler : MonoBehaviour {
     [SerializeField] private Gun gun;
     [SerializeField] private Plunger plunger;
     [SerializeField] private PlayerInput playerInput;
+
+    [SerializeField] private UnityEvent onStart;
     
     private Vector2 _input;
     private Camera _camera;
     
-    void Start() {
+    void Awake() {
         _camera = Camera.main;
     }
 
     void Update() {
         gun.transform.up = _processedInput;
+
+        if (Keyboard.current != null) {
+            if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+                Application.Quit();
+            }
+        }
+
+        if (Gamepad.current != null) {
+            if (Gamepad.current.selectButton.wasPressedThisFrame) {
+                Application.Quit();
+            }
+        }
     }
 
     public void OnPlayerDeath() {
         playerInput.SwitchCurrentActionMap("Dead");
+    }
+
+    public void OnStart(InputAction.CallbackContext context) {
+        if (!context.performed) return;
+        onStart.Invoke();
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
     public void OnLook(InputAction.CallbackContext ctx) {
@@ -33,6 +54,11 @@ public class ElevatorInputHandler : MonoBehaviour {
         _input = ctx.control.device.deviceId == Mouse.current.deviceId ? 
             _camera.ScreenToWorldPoint(raw) :
             raw.normalized;
+    }
+
+    public void OnInfo(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
     }
 
     public void OnShoot(InputAction.CallbackContext ctx) {
