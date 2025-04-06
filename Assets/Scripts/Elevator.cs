@@ -16,6 +16,9 @@ public class Elevator : MonoBehaviour {
 
     [SerializeField] private RectTransform hpBar;
     [SerializeField] private GameObject hpCanvas;
+    
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject hudCanvas;
 
     [SerializeField] private DistanceJoint2D holdingJoint;
     
@@ -59,6 +62,13 @@ public class Elevator : MonoBehaviour {
         rigidBody2D.angularVelocity = Random.Range(-45f, 45f);
         onDeath.Invoke();
         _isDead = true;
+        StartCoroutine(ShowGameOver());
+    }
+
+    private IEnumerator ShowGameOver() {
+        yield return new WaitForSeconds(3f);
+        hudCanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
     }
 
     public void TakeDamage(float damage) {
