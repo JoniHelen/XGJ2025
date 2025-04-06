@@ -14,6 +14,8 @@ public class Elevator : MonoBehaviour {
     [SerializeField] private AudioClip splinterClip;
     [SerializeField] private AudioSource audioSource;
 
+    [SerializeField] private RectTransform hpBar;
+
     [SerializeField] private DistanceJoint2D holdingJoint;
     
     [SerializeField] private Rigidbody2D rigidBody2D;
@@ -55,6 +57,9 @@ public class Elevator : MonoBehaviour {
     public void TakeDamage(float damage) {
         health -= damage;
         audioSource.PlayOneShot(splinterClip);
+        
+        hpBar.anchoredPosition = new Vector2(-1.611f + health * 0.01f * 1.611f, hpBar.anchoredPosition.y);
+        
         if (health <= 0f) {
             Die();
         }
