@@ -9,3 +9,4 @@ public class Lantern : MonoBehaviour {
         lanternLight.intensity = (Mathf.Sin(Time.time * flickerSpeed) + 1.0f) * 0.25f + 0.5f;
     }
 }
+

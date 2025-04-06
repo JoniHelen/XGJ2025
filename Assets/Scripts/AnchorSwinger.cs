@@ -15,7 +15,8 @@ public class AnchorSwinger : MonoBehaviour {
     // Update is called once per frame
     private void FixedUpdate() {
         rigidBody.MovePosition(
-            _startPosition + Vector2.right * (Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance)
-        );
+            new Vector2(_startPosition.x + Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance,
+                rigidBody.position.y)
+            );
     }
 }
